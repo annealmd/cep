@@ -1,9 +1,9 @@
-abstract class ProductState {}
+abstract class CepState {}
 
-class InitialProductSate extends ProductState {}
+class InitialProductSate extends CepState {}
 
-class LoadingProductSate extends ProductState {}
+class LoadingProductSate extends CepState {}
 
-class SuccessProductSate extends ProductState {}
+class SuccessProductSate extends CepState {}
 
-class ErrorProductSate extends ProductState {}
+class ErrorProductSate extends CepState {}
