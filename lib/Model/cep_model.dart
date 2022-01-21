@@ -90,4 +90,9 @@ class CepModel {
         ddd.hashCode ^
         siafi.hashCode;
   }
+
+  @override
+  String toString() {
+    return 'CepModel(cep: $cep, logradouro: $logradouro, complemento: $complemento, bairro: $bairro, localidade: $localidade, uf: $uf, ibge: $ibge, gia: $gia, ddd: $ddd, siafi: $siafi)';
+  }
 }
