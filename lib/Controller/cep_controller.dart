@@ -4,19 +4,19 @@ import 'package:flutter/cupertino.dart';
 
 class CepController extends ValueNotifier {
   final CepService service;
-  HomeState state = HomeState.initial;
+  final state = ValueNotifier<HomeState>(HomeState.initial);
 
   CepModel? city;
 
   CepController(this.service) : super(null);
 
   Future fetchCep(String cep) async {
-    state = HomeState.loading;
+    state.value = HomeState.loading;
     try {
       city = await service.fetchCep(cep);
-      state = HomeState.success;
+      state.value = HomeState.success;
     } on Exception catch (e) {
-      state = HomeState.error;
+      state.value = HomeState.error;
     }
   }
 }

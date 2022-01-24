@@ -18,7 +18,12 @@ class HomePage extends StatelessWidget {
       shadowColor: Colors.cyan,
       child: Padding(
         padding: const EdgeInsets.all(20),
-        child: stateManagement(HomeState.success),
+        child: AnimatedBuilder(
+          animation: cepController.state,
+          builder: (context, child) {
+            return stateManagement(cepController.state.value);
+          },
+        ),
       ),
     );
   }
@@ -43,6 +48,7 @@ class HomePage extends StatelessWidget {
   }
 
   Column _initial(CepController cepController) {
+    txtController.clear();
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -112,7 +118,7 @@ class HomePage extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {
-              cepController.state = HomeState.initial;
+              cepController.state.value = HomeState.initial;
             },
             child: const Text('Search Again'),
           ),
@@ -131,7 +137,7 @@ class HomePage extends StatelessWidget {
         ),
         ElevatedButton(
           onPressed: () {
-            cepController.state = HomeState.initial;
+            cepController.state.value = HomeState.initial;
           },
           child: const Text('Try Again'),
         ),

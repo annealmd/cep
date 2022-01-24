@@ -33,7 +33,6 @@ void main() {
   });
 
   test('When Sut called should return the correct state', () async {
-    sut.state = HomeState.initial;
     when(() => mockService.fetchCep(any())).thenAnswer((_) async => cepModel);
 
     expect(sut.state, HomeState.initial);
@@ -45,7 +44,6 @@ void main() {
   });
 
   test('When Sut called should throw error', () async {
-    sut.state = HomeState.initial;
     when(() => mockService.fetchCep(any())).thenThrow(Exception());
 
     expect(sut.state, HomeState.initial);
