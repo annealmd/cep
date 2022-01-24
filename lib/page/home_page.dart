@@ -1,10 +1,17 @@
+import 'package:cep/Controller/cep_controller.dart';
+import 'package:cep/service/cep_service.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  final txtController = TextEditingController();
+  final service = CepService();
+  // ignore: non_constant_identifier_names
+
+  HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    CepController cepController = CepController(service);
     return Card(
       margin: const EdgeInsets.all(20),
       elevation: 10,
@@ -18,8 +25,9 @@ class HomePage extends StatelessWidget {
             const SizedBox(
               height: 40,
             ),
-            const TextField(
-              decoration: InputDecoration(
+            TextField(
+              controller: txtController,
+              decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 prefixIcon: Icon(Icons.house_outlined),
                 labelText: 'CEP',
@@ -33,9 +41,13 @@ class HomePage extends StatelessWidget {
               height: 40,
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                cepController.fetchCep(txtController.text);
+              },
               child: const Text('Enter'),
-            )
+            ),
+            const SizedBox(height: 20),
+            Text('${cepController.city?.localidade}'),
           ],
         ),
       ),

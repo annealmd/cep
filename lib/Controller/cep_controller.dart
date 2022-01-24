@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 class CepController extends ValueNotifier {
   final CepService service;
 
-  late CepModel city;
+  CepModel? city;
 
   CepController(this.service) : super(null);
 
