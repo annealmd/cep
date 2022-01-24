@@ -1,9 +1,13 @@
 abstract class CepState {}
 
-class InitialProductSate extends CepState {}
+class InitialCepSate extends CepState {}
 
-class LoadingProductSate extends CepState {}
+class LoadingCepSate extends CepState {}
 
-class SuccessProductSate extends CepState {}
+class SuccessCepSate extends CepState {}
 
-class ErrorProductSate extends CepState {}
+class ErrorCepSate extends CepState {
+  final String error;
+
+  ErrorCepSate(this.error);
+}

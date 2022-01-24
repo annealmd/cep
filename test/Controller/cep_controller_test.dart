@@ -20,11 +20,39 @@ void main() {
       gia: '',
       ddd: '38',
       siafi: '4865');
-  test('When Sut called should return a cepModel instance', () async {
+  test('When Sut called should instatiate city with a cepModel instance',
+      () async {
     when(() => mockService.fetchCep(any())).thenAnswer((_) async => cepModel);
+
+    //expect(sut.state, HomeState.initial);
     await sut.fetchCep('39400412');
+    //expect(sut.state, HomeState.success);
 
     expect(sut.city?.localidade, "Montes Claros");
     verify(() => mockService.fetchCep('39400412')).called(1);
+  });
+
+  test('When Sut called should return the correct state', () async {
+    sut.state = HomeState.initial;
+    when(() => mockService.fetchCep(any())).thenAnswer((_) async => cepModel);
+
+    expect(sut.state, HomeState.initial);
+    await sut.fetchCep('39400412');
+    expect(sut.state, HomeState.success);
+
+    //expect(sut.city?.localidade, "Montes Claros");
+    //verify(() => mockService.fetchCep('39400412')).called(1);
+  });
+
+  test('When Sut called should throw error', () async {
+    sut.state = HomeState.initial;
+    when(() => mockService.fetchCep(any())).thenThrow(Exception());
+
+    expect(sut.state, HomeState.initial);
+    await sut.fetchCep('39400412');
+    expect(sut.state, HomeState.error);
+
+    //expect(sut.city?.localidade, "Montes Claros");
+    //verify(() => mockService.fetchCep('39400412')).called(1);
   });
 }
