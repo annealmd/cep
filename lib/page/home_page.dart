@@ -6,12 +6,10 @@ import 'package:cep/page/widget/success_cep.dart';
 import 'package:cep/service/cep_service.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage {
   final service = CepService();
   late CepController cepController = CepController(service);
   // ignore: non_constant_identifier_names
-
-  HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
