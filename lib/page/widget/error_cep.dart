@@ -14,7 +14,7 @@ class ErrorCep extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text('An Error occurred'),
+        const Text('An Error occurred, check your entry!'),
         const SizedBox(
           height: 20,
         ),
