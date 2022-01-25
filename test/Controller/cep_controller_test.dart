@@ -24,9 +24,7 @@ void main() {
       () async {
     when(() => mockService.fetchCep(any())).thenAnswer((_) async => cepModel);
 
-    //expect(sut.state, HomeState.initial);
     await sut.fetchCep('39400412');
-    //expect(sut.state, HomeState.success);
 
     expect(sut.city?.localidade, "Montes Claros");
     verify(() => mockService.fetchCep('39400412')).called(1);
@@ -34,23 +32,17 @@ void main() {
 
   test('When Sut called should return the correct state', () async {
     when(() => mockService.fetchCep(any())).thenAnswer((_) async => cepModel);
-
-    expect(sut.state, HomeState.initial);
+    sut.state.value = HomeState.initial;
+    expect(sut.state.value, HomeState.initial);
     await sut.fetchCep('39400412');
-    expect(sut.state, HomeState.success);
-
-    //expect(sut.city?.localidade, "Montes Claros");
-    //verify(() => mockService.fetchCep('39400412')).called(1);
+    expect(sut.state.value, HomeState.success);
   });
 
   test('When Sut called should throw error', () async {
     when(() => mockService.fetchCep(any())).thenThrow(Exception());
-
-    expect(sut.state, HomeState.initial);
+    sut.state.value = HomeState.initial;
+    expect(sut.state.value, HomeState.initial);
     await sut.fetchCep('39400412');
-    expect(sut.state, HomeState.error);
-
-    //expect(sut.city?.localidade, "Montes Claros");
-    //verify(() => mockService.fetchCep('39400412')).called(1);
+    expect(sut.state.value, HomeState.error);
   });
 }
