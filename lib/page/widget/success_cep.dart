@@ -1,17 +1,18 @@
 import 'package:cep/Controller/cep_controller.dart';
+import 'package:cep/states/cep_state.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/src/provider.dart';
 
 class SuccessCep extends StatelessWidget {
-  const SuccessCep({
-    Key? key,
-    required this.cepController,
-  }) : super(key: key);
+  // const SuccessCep(
+  //   this.cepController,
+  // ) : super();
 
-  final CepController cepController;
+  // final CepController cepController;
 
   @override
   Widget build(BuildContext context) {
-    final city = cepController.city;
+    final city = context.read<CepController>().city;
     return (city?.cep == null)
         ? Padding(
             padding: const EdgeInsets.symmetric(
@@ -36,7 +37,7 @@ class SuccessCep extends StatelessWidget {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    cepController.state.value = HomeState.initial;
+                    context.read<CepController>().value = InitialCepSate();
                   },
                   child: const Text('Search Again'),
                 ),
@@ -55,7 +56,7 @@ class SuccessCep extends StatelessWidget {
                   height: 20,
                 ),
                 Text(
-                  '${cepController.city?.localidade}',
+                  '${city?.localidade}',
                   style: const TextStyle(
                     fontSize: 20,
                   ),
@@ -63,17 +64,17 @@ class SuccessCep extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                Text('Habitantes: ${cepController.city?.ibge}'),
+                Text('Habitantes: ${city?.ibge}'),
                 const SizedBox(
                   height: 20,
                 ),
-                Text('Bairro: ${cepController.city?.bairro}'),
+                Text('Bairro: ${city?.bairro}'),
                 const SizedBox(
                   height: 20,
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    cepController.state.value = HomeState.initial;
+                    context.read<CepController>().value = InitialCepSate();
                   },
                   child: const Text('Search Again'),
                 ),

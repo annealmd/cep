@@ -1,14 +1,15 @@
-import 'package:cep/Controller/cep_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/src/provider.dart';
+
+import 'package:cep/Controller/cep_controller.dart';
 
 class InitialCep extends StatelessWidget {
   final txtController = TextEditingController();
+  // InitialCep(
+  //   this.cepController,
+  // ) : super();
 
-  final CepController cepController;
-  InitialCep({
-    Key? key,
-    required this.cepController,
-  }) : super(key: key);
+  // final CepController cepController;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +37,7 @@ class InitialCep extends StatelessWidget {
         ),
         ElevatedButton(
           onPressed: () {
-            cepController.fetchCep(txtController.text);
+            context.read<CepController>().fetchCep(txtController.text);
           },
           child: const Text('Enter'),
         ),

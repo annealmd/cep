@@ -1,13 +1,14 @@
 import 'package:cep/Controller/cep_controller.dart';
+import 'package:cep/states/cep_state.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/src/provider.dart';
 
 class ErrorCep extends StatelessWidget {
-  const ErrorCep({
-    Key? key,
-    required this.cepController,
-  }) : super(key: key);
+  // const ErrorCep(
+  //   this.cepController,
+  // ) : super();
 
-  final CepController cepController;
+  // final CepController cepController;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class ErrorCep extends StatelessWidget {
         ),
         ElevatedButton(
           onPressed: () {
-            cepController.state.value = HomeState.initial;
+            context.read<CepController>().value = InitialCepSate();
           },
           child: const Text('Try Again'),
         ),

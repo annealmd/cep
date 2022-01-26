@@ -1,6 +1,7 @@
 import 'package:cep/Controller/cep_controller.dart';
 import 'package:cep/Model/cep_model.dart';
 import 'package:cep/service/cep_service.dart';
+import 'package:cep/states/cep_state.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -32,17 +33,17 @@ void main() {
 
   test('When Sut called should return the correct state', () async {
     when(() => mockService.fetchCep(any())).thenAnswer((_) async => cepModel);
-    sut.state.value = HomeState.initial;
-    expect(sut.state.value, HomeState.initial);
+    sut.value = InitialCepSate();
+    expect(sut.value, isA<InitialCepSate>());
     await sut.fetchCep('39400412');
-    expect(sut.state.value, HomeState.success);
+    expect(sut.value, isA<SuccessCepSate>());
   });
 
   test('When Sut called should throw error', () async {
     when(() => mockService.fetchCep(any())).thenThrow(Exception());
-    sut.state.value = HomeState.initial;
-    expect(sut.state.value, HomeState.initial);
+    sut.value = InitialCepSate();
+    expect(sut.value, isA<InitialCepSate>());
     await sut.fetchCep('39400412');
-    expect(sut.state.value, HomeState.error);
+    expect(sut.value, isA<ErrorCepSate>());
   });
 }

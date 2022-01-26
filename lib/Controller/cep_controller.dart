@@ -1,24 +1,23 @@
 import 'package:cep/Model/cep_model.dart';
 import 'package:cep/service/cep_service.dart';
+import 'package:cep/states/cep_state.dart';
 import 'package:flutter/cupertino.dart';
 
-class CepController extends ValueNotifier {
+class CepController extends ValueNotifier<CepState> {
   final CepService service;
-  final state = ValueNotifier<HomeState>(HomeState.initial);
+  //final state = ValueNotifier<HomeState>(HomeState.initial);
 
   CepModel? city;
 
-  CepController(this.service) : super(null);
+  CepController(this.service) : super(InitialCepSate());
 
   Future fetchCep(String cep) async {
-    state.value = HomeState.loading;
+    value = LoadingCepSate();
     try {
       city = await service.fetchCep(cep);
-      state.value = HomeState.success;
+      value = SuccessCepSate(city!);
     } on Exception catch (e) {
-      state.value = HomeState.error;
+      value = ErrorCepSate(e.toString());
     }
   }
 }
-
-enum HomeState { initial, loading, success, error }
