@@ -15,7 +15,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final state = context.watch<CepController>().value;
-    var widgetState = stateManagementa(state);
+    var widgetState = stateManagement(state);
     return Card(
       margin: const EdgeInsets.all(20),
       elevation: 10,
@@ -24,7 +24,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget stateManagementa(CepState state) {
+  Widget stateManagement(CepState state) {
     if (state is InitialCepSate) return InitialCep();
     if (state is LoadingCepSate) return const LoadingCep();
     if (state is SuccessCepSate) return SuccessCep();
