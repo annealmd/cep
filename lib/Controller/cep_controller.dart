@@ -5,7 +5,6 @@ import 'package:flutter/cupertino.dart';
 
 class CepController extends ValueNotifier<CepState> {
   final CepService service;
-  //final state = ValueNotifier<HomeState>(HomeState.initial);
 
   CepModel? city;
 
