@@ -1,6 +1,10 @@
 import 'package:cep/Controller/cep_controller.dart';
-import 'package:cep/page/home_page.dart';
+import 'package:cep/core/app_router.dart';
+import 'package:cep/core/app_theme.dart';
+import 'package:cep/core/constants.dart';
+
 import 'package:cep/service/cep_service.dart';
+import 'package:cep/view/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
@@ -22,11 +26,12 @@ class MyApp extends StatelessWidget {
             create: (context) => CepController(context.read())),
       ],
       child: MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: HomePage(),
+        title: Strings.appTitle,
+        theme: AppTheme.lightTheme,
+        darkTheme: AppTheme.darkTheme,
+        initialRoute: AppRouter.home,
+        onGenerateRoute: AppRouter.onGenerateRoute,
+        //home: const HomePage(),
       ),
     );
   }

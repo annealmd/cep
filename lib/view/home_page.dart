@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+// ignore: implementation_imports
 import 'package:provider/src/provider.dart';
 
 import 'package:cep/Controller/cep_controller.dart';
-import 'package:cep/page/widget/error_cep.dart';
-import 'package:cep/page/widget/initial_cep.dart';
-import 'package:cep/page/widget/loading_cep.dart';
-import 'package:cep/page/widget/success_cep.dart';
+import 'package:cep/view/widget/error_cep.dart';
+import 'package:cep/view/widget/initial_cep.dart';
+import 'package:cep/view/widget/loading_cep.dart';
+import 'package:cep/view/widget/success_cep.dart';
 import 'package:cep/states/cep_state.dart';
 
 // ignore: must_be_immutable
 class HomePage extends StatelessWidget {
-  HomePage({Key? key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
